@@ -53,5 +53,13 @@ public class CalculatorTest {
 	public void testNewLine() {
 		assertEquals(6, Calculator.add("1\n2,3"));
 	}
+	
+	public void testNewLine2() {
+		assertEquals(5, Calculator.add("1\n2\n2"));
+	}
+	
+	public void testNewLine3() {
+		assertEquals(6, Calculator.add("2,2\n2"));
+	}
 
 }
