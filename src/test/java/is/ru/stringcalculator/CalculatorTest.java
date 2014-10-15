@@ -18,19 +18,30 @@ public class CalculatorTest {
 	public void testOneNumber() {
 		assertEquals(1, Calculator.add("1"));
 	}
+	
+	@Test
+	public void testOneNumber2() {
+		assertEquals(2, Calculator.add("2"));
+	}
 
 	@Test
 	public void testTwoNumbers() {
 		assertEquals(3, Calculator.add("1,2"));
 	}	
+	
+	@Test
+	public void testTwoNumbers2() {
+		assertEquals(5, Calculator.add("4,1"));
+	}
 
 	@Test
     public void testMultipleNumbers(){
     	assertEquals(6, Calculator.add("1,2,3"));
     }
+	
 	@Test
-	public void testOneNumber2() {
-		assertEquals(2, Calculator.add("2"));
+	public void testMultipleNumbers2() {
+		assertEquals(10, Calculator.add("6,1,3"));
 	}
 
 }
