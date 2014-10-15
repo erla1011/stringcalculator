@@ -43,5 +43,15 @@ public class CalculatorTest {
 	public void testMultipleNumbers2() {
 		assertEquals(10, Calculator.add("6,1,3"));
 	}
+	
+	@Test
+	public void testMultipleNumbers3() {
+		assertEquals(15, Calculator.add("5,2,3,1,4"));
+	}
+	
+	@Test 
+	public void testNewLine() {
+		assertEquals(6, Calculator.add("1\n2,3"));
+	}
 
 }
