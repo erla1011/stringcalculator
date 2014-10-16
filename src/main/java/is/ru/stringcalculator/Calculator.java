@@ -1,5 +1,8 @@
 package is.ru.stringcalculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Calculator {
 
 	public static int add(String text){
@@ -7,7 +10,32 @@ public class Calculator {
 			return 0;
 		}
 		else if(text.contains(",") || text.contains("\n")){
-			return sum(splitNumbers(text));
+			String[] numbers = splitNumbers(text);
+			
+			List<String> negativeNumbers = new ArrayList<String>();
+			
+			boolean hasANegativeNumber = false;
+			
+			for (String i : numbers) {
+				int newI = toInt(i);
+				if (newI < 0) {
+					negativeNumbers.add(i);
+					hasANegativeNumber = true;
+				}
+			}
+			
+			if(hasANegativeNumber) {
+				String negativeNumbersSeparated = "";
+				for (String i : negativeNumbers) {
+					negativeNumbersSeparated += ",";
+					negativeNumbersSeparated += i;
+				}
+				throw new IllegalArgumentException("Negatives not allowed: " + negativeNumbersSeparated.substring(1));
+			}
+			
+			else {
+				return sum(numbers);
+			}
 		}
 		else
 			return toInt(text);
@@ -18,16 +46,15 @@ public class Calculator {
 	}
 
 	private static String[] splitNumbers(String numbers){
-		String[] splitted = null;
-		String[] semisplitted;
+		String[] splitted;
 
-		if(numbers.contains("//")) {
-			numbers = numbers.substring(2);
-			semisplitted = numbers.split("\n", 1);
-			splitted = semisplitted[1].split(semisplitted[0]);
+		if(numbers.startsWith("//")) {
+			String delimiter = numbers.substring(2,3);
+			numbers = numbers.substring(4);
+			splitted = numbers.split(delimiter);
 			return splitted;
 		}
-		else if(numbers.contains("\n") && numbers.contains(","))
+		else if(numbers.contains("\n") || numbers.contains(","))
 		{
 			splitted = numbers.split("\n|\\,");
 			return splitted;
@@ -50,6 +77,10 @@ public class Calculator {
 		return total;
     }
 
-
+    public static void main(String[] args) {
+    	//int sum = add("2,-4,3,-5");
+    	//int sum2 = add("//:\n2:1");
+    	
+    }
 
 }
