@@ -61,5 +61,13 @@ public class CalculatorTest {
 	public void testNewLine3() {
 		assertEquals(6, Calculator.add("2,2\n2"));
 	}
+	
+	public void testDifferentDelimiter() {
+		assertEquals(3, Calculator.add("//;\n1;2"));
+	}
+
+	public void testDifferentDelimiter2() {
+		assertEquals(10, Calculator.add("//{\n1{2{3{4"));
+	}
 
 }

@@ -18,15 +18,27 @@ public class Calculator {
 	}
 
 	private static String[] splitNumbers(String numbers){
-		if(numbers.contains("\n") && numbers.contains(","))
+		String[] splitted = null;
+		String[] semisplitted;
+
+		if(numbers.contains("//")) {
+			numbers = numbers.substring(2);
+			semisplitted = numbers.split("\n", 1);
+			splitted = semisplitted[1].split(semisplitted[0]);
+			return splitted;
+		}
+		else if(numbers.contains("\n") && numbers.contains(","))
 		{
-			return numbers.split("\n|\\,");
+			splitted = numbers.split("\n|\\,");
+			return splitted;
 		}
 		else if(numbers.contains(",")) {
-			return numbers.split(",");
+			splitted = numbers.split(",");
+			return splitted;
 		}
 		else {
-			return numbers.split("\n");
+			splitted = numbers.split(",");
+			return splitted;
 		}
 	}
       
