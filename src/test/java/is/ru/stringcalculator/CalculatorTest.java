@@ -88,4 +88,9 @@ public class CalculatorTest {
 	public void testBigNumberes2() {
 		assertEquals(3, Calculator.add("1,1001,2,1005"));
 	}
+	
+	@Test 
+	public void testLongDelimiters() {
+		assertEquals(6, Calculator.add("//[***]\n1***2***3"));
+	}
 }

@@ -2,6 +2,7 @@ package is.ru.stringcalculator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Calculator {
 
@@ -53,9 +54,13 @@ public class Calculator {
 		String[] splitted;
 
 		if(numbers.startsWith("//")) {
-			String delimiter = numbers.substring(2,3);
-			numbers = numbers.substring(4);
-			splitted = numbers.split(delimiter);
+			String delimiter = numbers.substring(2,numbers.indexOf('\n'));
+			if (delimiter.length() > 1) {
+				delimiter = delimiter.substring(1,delimiter.indexOf(']'));
+			}
+		
+			numbers = numbers.substring(numbers.indexOf('\n') + 1);			
+			splitted = numbers.split(Pattern.quote(delimiter));
 			return splitted;
 		}
 		else if(numbers.contains("\n") || numbers.contains(","))
