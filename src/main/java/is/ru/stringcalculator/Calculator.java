@@ -52,15 +52,28 @@ public class Calculator {
 
 	private static String[] splitNumbers(String numbers){
 		String[] splitted;
+		String[] delimiters;
 
 		if(numbers.startsWith("//")) {
 			String delimiter = numbers.substring(2,numbers.indexOf('\n'));
 			if (delimiter.length() > 1) {
-				delimiter = delimiter.substring(1,delimiter.indexOf(']'));
+				delimiter = delimiter.substring(1,delimiter.length() - 1);
+				delimiters = delimiter.split(Pattern.quote("]["));
 			}
-		
+			else {
+				delimiters = new String[1];
+				delimiters[0] = delimiter;
+ 			}
+			
+			String regex = "";
+			
+			for (String i : delimiters) {
+				regex += Pattern.quote(i) +  "|";
+			}
+			regex = regex.substring(0, regex.length() - 1);
+			
 			numbers = numbers.substring(numbers.indexOf('\n') + 1);			
-			splitted = numbers.split(Pattern.quote(delimiter));
+			splitted = numbers.split(regex);
 			return splitted;
 		}
 		else if(numbers.contains("\n") || numbers.contains(","))
