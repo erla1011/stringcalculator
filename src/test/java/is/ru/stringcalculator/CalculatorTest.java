@@ -78,4 +78,14 @@ public class CalculatorTest {
 	public void testSingleNegativeNumber() {
 		Calculator.add("-1,-2,-3");
 	}
+	
+	@Test 
+	public void testBigNumberes() {
+		assertEquals(3, Calculator.add("1,1001,2"));
+	}
+	
+	@Test 
+	public void testBigNumberes2() {
+		assertEquals(3, Calculator.add("1,1001,2,1005"));
+	}
 }

@@ -13,6 +13,7 @@ public class Calculator {
 			String[] numbers = splitNumbers(text);
 			
 			List<String> negativeNumbers = new ArrayList<String>();
+			List<String> validNumbers = new ArrayList<String>();
 			
 			boolean hasANegativeNumber = false;
 			
@@ -21,6 +22,9 @@ public class Calculator {
 				if (newI < 0) {
 					negativeNumbers.add(i);
 					hasANegativeNumber = true;
+				}
+				else if (newI <= 1000) {
+					validNumbers.add(i);
 				}
 			}
 			
@@ -34,7 +38,7 @@ public class Calculator {
 			}
 			
 			else {
-				return sum(numbers);
+				return sum(validNumbers.toArray(new String[validNumbers.size()]));
 			}
 		}
 		else
